@@ -25,6 +25,7 @@ const styles = theme => ({
 		}),
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		alignItems: 'center',
 		heigth: '64px'
 	},
 	appBarShift: {
@@ -40,14 +41,28 @@ const styles = theme => ({
 		marginRight: 20
 	},
 	navBtns: {
-		display: 'inline-block'
+		display: 'inline-block',
+		marginRight: '1rem'
+	},
+	button: {
+		margin: '0 0.5rem'
 	}
 });
 
 class PaletteFormNav extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
+		this.state = {
+			formShowing: false
+		};
+		this.showForm = this.showForm.bind(this);
+		this.hideForm = this.hideForm.bind(this);
+	}
+	showForm() {
+		this.setState({ formShowing: true });
+	}
+	hideForm() {
+		this.setState({ formShowing: false });
 	}
 
 	render() {
@@ -79,17 +94,32 @@ class PaletteFormNav extends Component {
 						</Typography>
 					</Toolbar>
 					<div className={classes.navBtns}>
-						<PaletteMetaForm
-							palettes={palettes}
-							handleSubmit={handleSubmit}
-						/>
 						<Link to='/'>
-							<Button variant='contained' color='secondary'>
+							<Button
+								variant='contained'
+								color='secondary'
+								className={classes.button}
+							>
 								Go Back
 							</Button>
 						</Link>
+						<Button
+							variant='contained'
+							color='primary'
+							onClick={this.showForm}
+							className={classes.button}
+						>
+							Save
+						</Button>
 					</div>
 				</AppBar>
+				{this.state.formShowing && (
+					<PaletteMetaForm
+						palettes={palettes}
+						handleSubmit={handleSubmit}
+						hideForm={this.hideForm}
+					/>
+				)}
 			</div>
 		);
 	}
