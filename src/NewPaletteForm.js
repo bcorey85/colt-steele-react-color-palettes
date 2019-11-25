@@ -127,6 +127,11 @@ class NewPaletteForm extends Component {
 		});
 	}
 
+	deleteColor(colorName) {
+		this.setState({
+			colors: this.state.colors.filter(color => color.name !== colorName)
+		});
+	}
 	updateCurrentColor(newColor) {
 		this.setState({ currentColor: newColor.hex });
 	}
@@ -275,6 +280,10 @@ class NewPaletteForm extends Component {
 						<DraggableColorBox
 							color={color.color}
 							name={color.name}
+							handleClick={() => {
+								this.deleteColor(color.name);
+							}}
+							key={color.name}
 						/>
 					))}
 				</main>
