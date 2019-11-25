@@ -1,26 +1,81 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Palette from './Palette';
+import PaletteList from './PaletteList';
+import SingleColorPalette from './SingleColorPalette';
+import NewPaletteForm from './NewPaletteForm';
+import seedColors from './seedColors';
+import { generatePalette } from './colorHelpers';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.savePalette = this.savePalette.bind(this);
+		this.state = {
+			palettes: seedColors
+		};
+		this.findPalette = this.findPalette.bind(this);
+	}
+	findPalette(id) {
+		return this.state.palettes.find(palette => {
+			return palette.id === id;
+		});
+	}
+	savePalette(newPalette) {
+		this.setState({ palettes: [ ...this.state.palettes, newPalette ] });
+	}
+	render() {
+		return (
+			<Switch>
+				<Route
+					exact
+					path='/palette/new'
+					render={routeProps => (
+						<NewPaletteForm
+							savePalette={this.savePalette}
+							{...routeProps}
+						/>
+					)}
+				/>
+				<Route
+					exact
+					path='/'
+					render={routeProps => (
+						<PaletteList
+							palettes={this.state.palettes}
+							{...routeProps}
+						/>
+					)}
+				/>
+				<Route
+					exact
+					path='/palette/:id'
+					render={routeProps => (
+						<Palette
+							palette={generatePalette(
+								this.findPalette(routeProps.match.params.id)
+							)}
+						/>
+					)}
+				/>
+				<Route
+					exact
+					path='/palette/:paletteId/:colorId'
+					render={routeProps => (
+						<SingleColorPalette
+							colorId={routeProps.match.params.colorId}
+							palette={generatePalette(
+								this.findPalette(
+									routeProps.match.params.paletteId
+								)
+							)}
+						/>
+					)}
+				/>
+			</Switch>
+		);
+	}
 }
 
 export default App;
