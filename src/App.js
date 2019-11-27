@@ -11,9 +11,12 @@ import './App.css';
 class App extends Component {
 	constructor(props) {
 		super(props);
+		const savedPalettes = JSON.parse(
+			window.localStorage.getItem('palettes')
+		);
 		this.savePalette = this.savePalette.bind(this);
 		this.state = {
-			palettes: seedColors
+			palettes: savedPalettes || seedColors
 		};
 		this.findPalette = this.findPalette.bind(this);
 	}
@@ -23,7 +26,16 @@ class App extends Component {
 		});
 	}
 	savePalette(newPalette) {
-		this.setState({ palettes: [ ...this.state.palettes, newPalette ] });
+		this.setState(
+			{ palettes: [ ...this.state.palettes, newPalette ] },
+			this.syncLocalStorage
+		);
+	}
+	syncLocalStorage() {
+		window.localStorage.setItem(
+			'palettes',
+			JSON.stringify(this.state.palettes)
+		);
 	}
 	render() {
 		return (
