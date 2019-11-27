@@ -1,12 +1,19 @@
 import media from './mediaQueries';
+import bg from './bg.svg';
 
 export default {
 	root: {
-		backgroundColor: 'blue',
 		height: '100vh',
 		display: 'flex',
 		alignItems: 'flex-start',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		/* background by SVG Background */
+		backgroundColor: '#1e8feb',
+		backgroundImage: `url(${bg})`,
+		overflow: 'scroll',
+		'& h1': {
+			fontSize: '2rem'
+		}
 	},
 	container: {
 		width: '50%',
