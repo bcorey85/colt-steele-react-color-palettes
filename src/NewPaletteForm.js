@@ -102,8 +102,7 @@ class NewPaletteForm extends Component {
 					open={open}
 					classes={{
 						paper: classes.drawerPaper
-					}}
-				>
+					}}>
 					<div className={classes.drawerHeader}>
 						<IconButton onClick={this.handleDrawerClose}>
 							<ChevronLeftIcon />
@@ -120,8 +119,7 @@ class NewPaletteForm extends Component {
 								variant='contained'
 								color='secondary'
 								onClick={this.clearColors}
-								className={classes.button}
-							>
+								className={classes.button}>
 								Clear Palette
 							</Button>
 							<Button
@@ -129,8 +127,7 @@ class NewPaletteForm extends Component {
 								color='primary'
 								onClick={this.addRandomColor}
 								disabled={paletteIsFull}
-								className={classes.button}
-							>
+								className={classes.button}>
 								{paletteIsFull ? (
 									'Palette is Full'
 								) : (
@@ -148,14 +145,14 @@ class NewPaletteForm extends Component {
 				<main
 					className={classNames(classes.content, {
 						[classes.contentShift]: open
-					})}
-				>
+					})}>
 					<div className={classes.drawerHeader} />
 					<DraggableColorList
 						colors={colors}
 						deleteColor={this.deleteColor}
 						axis='xy'
 						onSortEnd={this.onSortEnd}
+						distance={20}
 					/>
 				</main>
 			</div>
