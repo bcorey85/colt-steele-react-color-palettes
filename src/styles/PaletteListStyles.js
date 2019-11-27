@@ -2,6 +2,15 @@ import media from './mediaQueries';
 import bg from './bg.svg';
 
 export default {
+	'@global': {
+		'.fade-exit': {
+			opacity: '1'
+		},
+		'.fade-exit-active': {
+			opacity: '0.01',
+			transition: 'opacity 0.5s ease-out'
+		}
+	},
 	root: {
 		height: '100vh',
 		display: 'flex',
