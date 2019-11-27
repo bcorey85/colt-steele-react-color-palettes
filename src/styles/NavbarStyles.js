@@ -1,3 +1,5 @@
+import media from './mediaQueries';
+
 export default {
 	Navbar: {
 		display: 'flex',
@@ -17,6 +19,9 @@ export default {
 		'& a': {
 			textDecoration: 'none',
 			color: 'black'
+		},
+		[media.below('xs')]: {
+			display: 'none'
 		}
 	},
 	slider: {
@@ -35,6 +40,9 @@ export default {
 			height: '13px',
 			marginLeft: '-3px',
 			marginTop: '-3px'
+		},
+		[media.below('md')]: {
+			width: '150px'
 		},
 		'& .rc-slider-track': {
 			background: 'transparent'

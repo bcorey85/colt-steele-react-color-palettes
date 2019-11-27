@@ -16,7 +16,7 @@ export default {
 		},
 		[media.below('lg')]: {
 			width: '25%',
-			height: props => (props.showingFullPalette ? '20%' : '25%')
+			height: props => (props.showingFullPalette ? '20%' : '33.33333%')
 		},
 		[media.below('md')]: {
 			width: '50%',
@@ -117,7 +117,10 @@ export default {
 			background: 'rgba(255, 255, 255, 0.2)',
 			width: '100%',
 			marginBottom: '0',
-			padding: '1rem'
+			padding: '1rem',
+			[media.below('xs')]: {
+				fontSize: '5rem'
+			}
 		},
 		'& p': {
 			fontSize: '2rem',

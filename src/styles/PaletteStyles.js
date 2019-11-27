@@ -1,3 +1,5 @@
+import media from './mediaQueries';
+
 export default {
 	Palette: {
 		height: '100vh'
@@ -32,6 +34,18 @@ export default {
 			color: 'white',
 			border: 'none',
 			textDecoration: 'none'
+		},
+		[media.below('lg')]: {
+			width: '25%',
+			height: '33.3333%'
+		},
+		[media.below('md')]: {
+			width: '50%',
+			height: '20%'
+		},
+		[media.below('xs')]: {
+			width: '100%',
+			height: '10%'
 		}
 	}
 };

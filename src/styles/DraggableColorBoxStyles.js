@@ -1,3 +1,5 @@
+import media from './mediaQueries';
+
 const styles = {
 	root: {
 		height: '25%',
@@ -10,6 +12,18 @@ const styles = {
 		'&:hover svg': {
 			color: 'white',
 			transform: 'scale(1.5)'
+		},
+		[media.below('lg')]: {
+			width: '25%',
+			height: '20%'
+		},
+		[media.below('md')]: {
+			width: '50%',
+			height: '10%'
+		},
+		[media.below('sm')]: {
+			width: '100%',
+			height: '5%'
 		}
 	},
 	boxContent: {

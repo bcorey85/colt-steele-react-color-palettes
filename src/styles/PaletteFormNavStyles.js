@@ -1,4 +1,5 @@
 import { DRAWER_WIDTH } from '../constants';
+import media from './mediaQueries';
 
 const drawerWidth = DRAWER_WIDTH;
 const styles = theme => ({
@@ -35,10 +36,17 @@ const styles = theme => ({
 		marginRight: '1rem',
 		'& a': {
 			textDecoration: 'none'
+		},
+		[media.below('xs')]: {
+			marginRight: '.5rem'
 		}
 	},
 	button: {
-		margin: '0 0.5rem'
+		margin: '0 0.5rem',
+		[media.below('xs')]: {
+			margin: '0.2rem',
+			padding: '0.2rem'
+		}
 	}
 });
 
