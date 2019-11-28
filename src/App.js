@@ -4,6 +4,7 @@ import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
+import Page from './Page';
 import seedColors from './seedColors';
 import { generatePalette } from './colorHelpers';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
@@ -59,20 +60,20 @@ class App extends Component {
 									exact
 									path='/palette/new'
 									render={routeProps => (
-										<div className='page'>
+										<Page>
 											<NewPaletteForm
 												savePalette={this.savePalette}
 												{...routeProps}
 												palettes={this.state.palettes}
 											/>
-										</div>
+										</Page>
 									)}
 								/>
 								<Route
 									exact
 									path='/'
 									render={routeProps => (
-										<div className='page'>
+										<Page>
 											<PaletteList
 												palettes={this.state.palettes}
 												deletePalette={
@@ -80,14 +81,14 @@ class App extends Component {
 												}
 												{...routeProps}
 											/>
-										</div>
+										</Page>
 									)}
 								/>
 								<Route
 									exact
 									path='/palette/:id'
 									render={routeProps => (
-										<div className='page'>
+										<Page>
 											<Palette
 												palette={generatePalette(
 													this.findPalette(
@@ -96,14 +97,14 @@ class App extends Component {
 													)
 												)}
 											/>
-										</div>
+										</Page>
 									)}
 								/>
 								<Route
 									exact
 									path='/palette/:paletteId/:colorId'
 									render={routeProps => (
-										<div className='page'>
+										<Page>
 											<SingleColorPalette
 												colorId={
 													routeProps.match.params
@@ -116,7 +117,7 @@ class App extends Component {
 													)
 												)}
 											/>
-										</div>
+										</Page>
 									)}
 								/>
 							</Switch>

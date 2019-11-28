@@ -50,6 +50,7 @@ class PaletteMetaForm extends Component {
 			emoji: emoji.native
 		};
 		this.props.handleSubmit(palette);
+		this.setState({ stage: '' });
 	}
 	render() {
 		const { newPaletteName } = this.state;
@@ -66,8 +67,7 @@ class PaletteMetaForm extends Component {
 				<Dialog
 					open={this.state.stage === 'form'}
 					onClose={hideForm}
-					aria-labelledby='form-dialog-title'
-				>
+					aria-labelledby='form-dialog-title'>
 					<DialogTitle id='form-dialog-title'>
 						Choose a Palette Name
 					</DialogTitle>
@@ -102,8 +102,7 @@ class PaletteMetaForm extends Component {
 							<Button
 								variant='contained'
 								color='primary'
-								type='submit'
-							>
+								type='submit'>
 								Save Palette
 							</Button>
 						</DialogActions>
