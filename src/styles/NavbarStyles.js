@@ -5,6 +5,7 @@ export default {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'flex-start',
+		minHeight: '70px',
 		height: '5vh'
 	},
 	logo: {
@@ -16,12 +17,17 @@ export default {
 		height: '100%',
 		display: 'flex',
 		alignItems: 'center',
+		[media.below('xs')]: {
+			marginRight: '5px',
+			padding: '0  0 0 13px',
+			maxWidth: '75px'
+		},
 		'& a': {
 			textDecoration: 'none',
-			color: 'black'
-		},
-		[media.below('xs')]: {
-			display: 'none'
+			color: 'black',
+			[media.below('xs')]: {
+				fontSize: '1rem'
+			}
 		}
 	},
 	slider: {
@@ -41,7 +47,7 @@ export default {
 			marginLeft: '-3px',
 			marginTop: '-3px'
 		},
-		[media.below('md')]: {
+		[media.below('sm')]: {
 			width: '150px'
 		},
 		'& .rc-slider-track': {
