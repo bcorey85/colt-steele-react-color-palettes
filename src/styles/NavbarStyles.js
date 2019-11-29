@@ -5,7 +5,6 @@ export default {
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'flex-start',
-		minHeight: '70px',
 		height: '5vh'
 	},
 	logo: {

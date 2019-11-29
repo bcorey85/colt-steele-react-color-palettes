@@ -8,6 +8,7 @@ import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
 import Page from './Page';
+import Toggler from './Toggler';
 import seedColors from './seedColors';
 
 import './App.css';
