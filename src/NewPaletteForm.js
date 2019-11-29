@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
-import classNames from 'classnames';
+import { arrayMove } from 'react-sortable-hoc';
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +12,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DraggableColorList from './DraggableColorList';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
-import { arrayMove } from 'react-sortable-hoc';
+import seedColors from './seedColors';
+
 import styles from './styles/NewPaletteFormStyles';
 
 class NewPaletteForm extends Component {
@@ -23,7 +25,7 @@ class NewPaletteForm extends Component {
 		this.state = {
 			open: false,
 			newColorName: '',
-			colors: this.props.palettes[0].colors
+			colors: seedColors[0].colors
 		};
 		this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
 		this.handleDrawerClose = this.handleDrawerClose.bind(this);
@@ -102,7 +104,8 @@ class NewPaletteForm extends Component {
 					open={open}
 					classes={{
 						paper: classes.drawerPaper
-					}}>
+					}}
+				>
 					<div className={classes.drawerHeader}>
 						<IconButton onClick={this.handleDrawerClose}>
 							<ChevronLeftIcon />
@@ -119,7 +122,8 @@ class NewPaletteForm extends Component {
 								variant='contained'
 								color='secondary'
 								onClick={this.clearColors}
-								className={classes.button}>
+								className={classes.button}
+							>
 								Clear Palette
 							</Button>
 							<Button
@@ -127,7 +131,8 @@ class NewPaletteForm extends Component {
 								color='primary'
 								onClick={this.addRandomColor}
 								disabled={paletteIsFull}
-								className={classes.button}>
+								className={classes.button}
+							>
 								{paletteIsFull ? (
 									'Palette is Full'
 								) : (
@@ -145,7 +150,8 @@ class NewPaletteForm extends Component {
 				<main
 					className={classNames(classes.content, {
 						[classes.contentShift]: open
-					})}>
+					})}
+				>
 					<div className={classes.drawerHeader} />
 					<DraggableColorList
 						colors={colors}

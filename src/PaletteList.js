@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withStyles } from '@material-ui/styles';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import MiniPalette from './MiniPalette';
 import Dialog from '@material-ui/core/Dialog';
 import List from '@material-ui/core/List';
@@ -12,8 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
-import { withStyles } from '@material-ui/styles';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+
 import styles from './styles/PaletteListStyles';
 
 class PaletteList extends Component {
@@ -44,6 +46,7 @@ class PaletteList extends Component {
 
 	render() {
 		const { palettes, classes } = this.props;
+		const { openDeleteDialog } = this.state;
 
 		return (
 			<div className={classes.root}>
@@ -58,7 +61,8 @@ class PaletteList extends Component {
 							<CSSTransition
 								key={palette.id}
 								classNames='fade'
-								timeout={500}>
+								timeout={500}
+							>
 								<MiniPalette
 									{...palette}
 									handleClick={this.goToPalette}
@@ -71,9 +75,10 @@ class PaletteList extends Component {
 					</TransitionGroup>
 				</div>
 				<Dialog
-					open={this.state.openDeleteDialog}
+					open={openDeleteDialog}
 					aria-labelledby='delete-dialog-title'
-					onClose={this.closeDialog}>
+					onClose={this.closeDialog}
+				>
 					<DialogTitle id='delete-dialog-title'>
 						Delete this palette?
 					</DialogTitle>
@@ -84,7 +89,8 @@ class PaletteList extends Component {
 									style={{
 										backgroundColor: blue[100],
 										color: blue[600]
-									}}>
+									}}
+								>
 									<CheckIcon />
 								</Avatar>
 							</ListItemAvatar>
@@ -96,7 +102,8 @@ class PaletteList extends Component {
 									style={{
 										backgroundColor: red[100],
 										color: red[600]
-									}}>
+									}}
+								>
 									<CloseIcon />
 								</Avatar>
 							</ListItemAvatar>

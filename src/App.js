@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { generatePalette } from './colorHelpers';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 import Palette from './Palette';
 import PaletteList from './PaletteList';
 import SingleColorPalette from './SingleColorPalette';
 import NewPaletteForm from './NewPaletteForm';
 import Page from './Page';
 import seedColors from './seedColors';
-import { generatePalette } from './colorHelpers';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 import './App.css';
 
 class App extends Component {
@@ -41,12 +43,16 @@ class App extends Component {
 		);
 	}
 	deletePalette(id) {
-		this.setState(st => ({
-			palettes: st.palettes.filter(palette => palette.id !== id)
-		}));
-		this.syncLocalStorage();
+		console.log('hit');
+		this.setState(
+			st => ({
+				palettes: st.palettes.filter(palette => palette.id !== id)
+			}),
+			this.syncLocalStorage
+		);
 	}
 	render() {
+		const { palettes } = this.state;
 		return (
 			<Route
 				render={({ location }) => (
@@ -54,7 +60,8 @@ class App extends Component {
 						<CSSTransition
 							classNames='fade'
 							timeout={500}
-							key={location.key}>
+							key={location.key}
+						>
 							<Switch location={location}>
 								<Route
 									exact
@@ -64,7 +71,7 @@ class App extends Component {
 											<NewPaletteForm
 												savePalette={this.savePalette}
 												{...routeProps}
-												palettes={this.state.palettes}
+												palettes={palettes}
 											/>
 										</Page>
 									)}
@@ -75,7 +82,7 @@ class App extends Component {
 									render={routeProps => (
 										<Page>
 											<PaletteList
-												palettes={this.state.palettes}
+												palettes={palettes}
 												deletePalette={
 													this.deletePalette
 												}

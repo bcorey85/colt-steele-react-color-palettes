@@ -1,4 +1,5 @@
 import media from './mediaQueries';
+import chroma from 'chroma-js';
 
 const styles = {
 	root: {
@@ -33,7 +34,8 @@ const styles = {
 		bottom: '0px',
 		padding: '10px',
 		textAlign: 'left',
-		color: 'black',
+		color: props =>
+			chroma(props.color).luminance() >= 0.5 ? 'black' : 'white',
 		letterSpacing: '1px',
 		fontSize: '12px',
 		boxSizing: 'border-box',
