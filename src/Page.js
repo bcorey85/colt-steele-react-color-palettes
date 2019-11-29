@@ -1,9 +1,8 @@
 import React from 'react';
-import { withStyles } from '@material-ui/styles';
-import styles from './styles/PageStyles';
+import './styles/Page.css';
 
 const Page = ({ children }) => {
-	return <section className='classes.page'>{children}</section>;
+	return <section className='page'>{children}</section>;
 };
 
-export default withStyles(styles)(Page);
+export default Page;
